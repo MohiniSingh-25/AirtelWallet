@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.airtel.wallet.DAO.Response;
 import com.airtel.wallet.Entity.Wallet;
+import com.airtel.wallet.Entity.WalletTransfer;
 import com.airtel.wallet.Entity.WalletUpdate;
 import com.airtel.wallet.Service.WalletService;
 
@@ -47,5 +48,12 @@ public class WalletController {
 	public ResponseEntity<Response> addUser(@RequestBody Wallet wallet)
 	{
 		return service.addUser(wallet);
+	}
+	
+	@PutMapping("/transfer")
+	public ResponseEntity<Response> transferMoney(@RequestBody WalletTransfer wallet)
+	{
+		return service.transferMoney(wallet.getSenderId(), wallet.getReceiverID(), wallet.getAmount());
+				
 	}
 }
